@@ -1,7 +1,17 @@
+type Account @entity {
+  id: ID!
+  transferFrom: [Transfer!]! @derivedFrom(field: "from")
+  transferTo: [Transfer!]! @derivedFrom(field: "to")
+}
+
 type Transfer @entity {
-  id: ID! #id is a required field
-  amount: BigInt
-  blockNumber: BigInt
-  to: String!
-  from: String!
+  id: ID!
+  amount: BigInt!
+  extrinsicHash: String!
+  status: Boolean!
+  to: Account!
+  from: Account!
+  token: String!
+  decimals: BigInt!
+  timestamp: Date!
 }
