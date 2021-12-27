@@ -21,7 +21,7 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
         },
     } = event;
     const blockNo = event.block.block.header.number.toNumber();
-    const decimals = BigInt("1" + "0".repeat(tokens.WESTEND.decimals))
+    const decimals = BigInt("1" + "0".repeat(tokens.DUSTY.decimals))
     const transformedAmount = (amount as Balance).toBigInt();
     const extrinsicHash = event.extrinsic.extrinsic.hash.toString();
     const timestamp = event.extrinsic.block.timestamp;
@@ -30,7 +30,7 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
 
     await ensureAccounts([from.toString(), to.toString()]);
 
-    transferInfo.token = tokens.WESTEND.name;
+    transferInfo.token = tokens.DUSTY.name;
     transferInfo.fromId = from.toString();
     transferInfo.toId = to.toString();
     transferInfo.timestamp = timestamp;
