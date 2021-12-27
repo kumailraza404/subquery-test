@@ -6,8 +6,8 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: '0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e'
-  endpoint: wss://westend.api.onfinality.io/public-ws
+  genesisHash: '0xbadd1afcab647246f96c072799f519f451cf91690c02051856a6b1d9b194a360'
+  endpoint: wss://rpc.dusty.plasmnet.io
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1

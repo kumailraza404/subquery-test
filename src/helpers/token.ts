@@ -9,5 +9,9 @@ export const tokens = {
     WESTEND: {
         name: "WND",
         decimals: 12
+    },
+    DUSTY: {
+        name: "PLD",
+        decimals: 15
     }
 }
