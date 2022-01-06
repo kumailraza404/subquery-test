@@ -8,6 +8,8 @@ schema:
 network:
   genesisHash: '0xbadd1afcab647246f96c072799f519f451cf91690c02051856a6b1d9b194a360'
   endpoint: wss://rpc.dusty.plasmnet.io
+  chaintypes:
+    file: ./types.yaml
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1409042
