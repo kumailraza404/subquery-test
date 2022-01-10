@@ -6,13 +6,13 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: '0xbadd1afcab647246f96c072799f519f451cf91690c02051856a6b1d9b194a360'
-  endpoint: wss://rpc.dusty.plasmnet.io
+  genesisHash: '0xddb89973361a170839f80f152d2e9e38a376a5a7eccefcade763f46a8e567019'
+  endpoint: wss://rpc.shibuya.astar.network
   chaintypes:
     file: ./types.yaml
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 1412703
+    startBlock: 1
     mapping:
       file: ./dist/index.js
       handlers:

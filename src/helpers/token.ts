@@ -13,5 +13,9 @@ export const tokens = {
     DUSTY: {
         name: "PLD",
         decimals: 15
+    },
+    SHIBUYA: {
+        name: "SBY",
+        decimals: 18
     }
 }
