@@ -27,7 +27,7 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     const expendedDecimals = BigInt("1" + "0".repeat(decimals))
     const transformedAmount = (amount as Balance).toBigInt();
     const extrinsicHash = event.extrinsic?.extrinsic.hash.toString();
-    const timestamp = event.extrinsic.block.timestamp;
+    const timestamp = event.block.timestamp;
     const transferInfo = new Transfer(`${blockNo}-${event.idx}`);
     const isSuccess = event.extrinsic ? event.extrinsic.success : true;
 

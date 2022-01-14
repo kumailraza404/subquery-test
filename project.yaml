@@ -1,5 +1,5 @@
 specVersion: 0.2.0
-name: subql-dusty
+name: subql-shibuya
 version: 1.0.0
 description: ''
 repository: ''
@@ -12,7 +12,7 @@ network:
     file: ./types.yaml
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 1
+    startBlock: 660720
     mapping:
       file: ./dist/index.js
       handlers:

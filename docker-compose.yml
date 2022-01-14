@@ -26,6 +26,7 @@ services:
     command:
       - -f=/app
       - --subquery-name=app
+      - --debug
 
   graphql-engine:
     image: onfinality/subql-query:latest
