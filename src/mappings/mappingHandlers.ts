@@ -15,7 +15,7 @@ async function ensureAccounts(accountIds: string[]): Promise<void> {
 
 
 export async function handleTransfer(event: SubstrateEvent): Promise<void> {
-    const { SHIBUYA: {
+    const { KUSAMA: {
         name, decimals
     } } = tokens
     const {
@@ -41,6 +41,6 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     transferInfo.amount = transformedAmount;
     transferInfo.status = isSuccess;
     transferInfo.decimals = expendedDecimals;
-    
+
     await transferInfo.save();
 }

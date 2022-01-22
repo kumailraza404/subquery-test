@@ -2,7 +2,7 @@ export const tokens = {
     POLKADOT: {
         name: "DOT",
         decimals: {
-            new : 10,
+            new: 10,
             old: 12
         }
     },
@@ -17,5 +17,9 @@ export const tokens = {
     SHIBUYA: {
         name: "SBY",
         decimals: 18
+    },
+    KUSAMA: {
+        name: "KSM",
+        decimals: 12,
     }
 }
