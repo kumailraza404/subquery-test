@@ -6,8 +6,8 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe'
-  endpoint: wss://kusama-rpc.dwellir.com
+  genesisHash: '0xfff6fd94251f570d4c9cdf25a0475da0d7ad35160290da19dad8f9caf8bf31b5'
+  endpoint: wss://tewai-rpc.bit.country
   chaintypes:
     file: ./types.yaml
 dataSources:

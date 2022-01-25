@@ -21,5 +21,9 @@ export const tokens = {
     KUSAMA: {
         name: "KSM",
         decimals: 12,
+    },
+    BIT_COUNTRY: {
+        name: "NUUM",
+        decimals: 18,
     }
 }
