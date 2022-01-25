@@ -6,7 +6,7 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: '0xfff6fd94251f570d4c9cdf25a0475da0d7ad35160290da19dad8f9caf8bf31b5'
+  genesisHash: '0xf22b7850cdd5a7657bbfd90ac86441275bbc57ace3d2698a740c7b0ec4de5ec3'
   endpoint: wss://pioneer-1-rpc.bit.country#
   chaintypes:
     file: ./types.yaml
