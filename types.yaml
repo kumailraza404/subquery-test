@@ -19,7 +19,7 @@
       start_time: u32
       end_time: u32
     AuctionInfo:
-      bid: 'Option<(AccountId,Balance)>'
+      bid: Option<(AccountId,Balance)>
       start: BlockNumber
       end: Option<BlockNumber>
     RentId: u64
