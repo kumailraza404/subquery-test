@@ -1,27 +1,22 @@
 types:
-  Keys: AccountId
-  Address: MultiAddress
-  LookupSource: MultiAddress
-  AmountOf: Amount
-  Amount: i128
-  SmartContract:
+  ResourceId: '[u8; 32]'
+  DepositNonce: u64
+  ProposalStatus:
     _enum:
-      Evm: H160
-      Wasm: AccountId
-  EraStakingPoints:
-    total: Balance
-    stakers: BTreeMap<AccountId, Balance>
-    formerStakedEra: EraIndex
-    claimedRewards: Balance
-  PalletDappsStakingEraStakingPoints:
-    total: Balance
-    stakers: BTreeMap<AccountId, Balance>
-    formerStakedEra: EraIndex
-    claimedRewards: Balance
-  EraRewardAndStake:
-    rewards: Balance
-    staked: Balance
-  PalletDappsStakingEraRewardAndStake:
-    rewards: Balance
-    staked: Balance
-  EraIndex: u32
+      - Initiated
+      - Approved
+      - Rejected
+  ProposalVotes:
+    votes_for: Vec<AccountId>
+    votes_against: Vec<AccountId>
+    status: ProposalStatus
+  BridgeTokenId: U256
+  BridgeChainId: u8
+  VestingPlan:
+  start_time: u64
+  cliff_duration: u64
+  total_duration: u64
+  interval: u64
+  initial_amount: Balance
+  total_amount: Balance
+  vesting_during_cliff: bool

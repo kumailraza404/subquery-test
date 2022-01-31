@@ -25,5 +25,9 @@ export const tokens = {
     AMBER: {
         name: "ACFG",
         decimals: 18
+    },
+    CONTEXT_FREE: {
+        name: "CTX",
+        decimals: 18
     }
 }
