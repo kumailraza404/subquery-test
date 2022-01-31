@@ -37,5 +37,9 @@ export const tokens = {
     PANGOLIN: {
         name: "PRING",
         decimals: 9
+    },
+    ARES_GLADIOS: {
+        name: "ARES",
+        decimals: 12
     }
 }

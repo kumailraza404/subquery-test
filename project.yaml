@@ -6,8 +6,8 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: '0xce44bd16fc276f9e457b452577b6c2678e57768260012af127479fed806da7e7'
-  endpoint: wss://pangolin-rpc.darwinia.network
+  genesisHash: '0xcc07acbee59e89a8bc99d87a24364b514d6ae657551338547b713444583eaac2'
+  endpoint: wss://gladios.aresprotocol.io
   chaintypes:
     file: ./types.yaml
 dataSources:

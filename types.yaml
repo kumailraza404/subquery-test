@@ -1,288 +1,155 @@
-types:
-  AccountData:
-    feeFrozen: Balance
-    free: Balance
-    reserved: Balance
-    freeKton: Balance
-    reservedKton: Balance
-    miscFrozen: Balance
-  AccountInfo: AccountInfoWithTripleRefCount
-  AccountInfoWithTripleRefCount:
-    consumers: RefCount
-    data: AccountData
-    nonce: Index
-    providers: RefCount
-    sufficients: RefCount
-  AddressT: '[u8; 20; AddressT]'
-  Announcement: ProxyAnnouncement
-  AuthorityId: '[u8;32]'
-  AuthoritySignature: '[u8;64]'
-  BSCHeader:
-    parentHash: H256
-    uncleHash: H256
-    coinbase: EthereumAddress
-    stateRoot: H256
-    transactionsRoot: H256
-    receiptsRoot: H256
-    logBloom: Bloom
-    difficulty: U256
-    number: u64
-    gasLimit: U256
-    gasUsed: U256
-    timestamp: u64
-    extraData: Bytes
-    mixDigest: H256
-    nonce: Bytes
-  BabeEpochConfiguration: 'Null'
-  BalanceInfo: '{}'
-  BalanceLock:
-    id: LockIdentifier
-    lockFor: LockFor
-    reasons: Reasons
-  Bloom: '[u8; 256; Bloom]'
-  BridgeMessageId: '(LaneId, MessageNonce)'
-  ChainProperties:
-    ss58Format: Option<u8>
-    tokenDecimals: Option<Vec<u32>>
-    tokenSymbol: Option<Vec<Text>>
-  Common:
-    amount: Balance
-  DepositId: U256
-  EcdsaAddress: EthereumAddress
-  EcdsaMessage: H256
-  EcdsaSignature: '[u8; 65; EcdsaSignature]'
-  ElectionCompute:
-    _enum:
-      - OnChain
-      - Signed
-      - Authority
-  ElectionResultT:
-    electedStashes: Vec<AccountId>
-    exposures: Vec<(AccountId, ExposureT)>
-    compute: ElectionCompute
-  EthashProof:
-    dagNodes: (H512, H512)
-    proof: Vec<H128>
-  EthereumAddress: H160
-  EthereumBlockNumber: u64
-  EthereumHeader:
-    parentHash: H256
-    timestamp: u64
-    number: EthereumBlockNumber
-    author: EthereumAddress
-    transactionsRoot: H256
-    unclesHash: H256
-    extraData: Bytes
-    stateRoot: H256
-    receiptsRoot: H256
-    logBloom: Bloom
-    gasUsed: U256
-    gasLimit: U256
-    difficulty: U256
-    seal: Vec<Bytes>
-    baseFeePerGas: Option<U256>
-    blockHash: Option<H256>
-  EthereumNetwork:
-    _enum:
-      Mainnet: 'Null'
-      Ropsten: 'Null'
-  EthereumReceipt:
-    gasUsed: U256
-    logBloom: Bloom
-    logs: Vec<LogEntry>
-    outcome: TransactionOutcome
-  EthereumReceiptProof:
-    index: u64
-    proof: Bytes
-    headerHash: H256
-  EthereumReceiptProofThing: (EthereumHeader, EthereumReceiptProof, MMRProof)
-  EthereumRelayHeaderParcel:
-    header: EthereumHeader
-    parentMmrRoot: H256
-  EthereumRelayProofs:
-    ethashProof: Vec<EthashProof>
-    mmrProof: Vec<H256>
-  EthereumTransactionIndex: (H256, u64)
-  Exposure: ExposureT
-  ExposureT:
-    ownRingBalance: Compact<Balance>
-    ownKtonBalance: Compact<Balance>
-    ownPower: Power
-    totalPower: Power
-    others: Vec<IndividualExposure>
-  Fee:
-    amount: Balance
-  H128: '[u8; 16; H128]'
-  IndividualExposure:
-    who: AccountId
-    ringBalance: Compact<Balance>
-    ktonBalance: Compact<Balance>
-    power: Power
-  InProcessOrders:
-    orders: Vec<LaneId, MessageNonce>
-  KtonBalance: Balance
-  LockFor:
-    _enum:
-      Common: Common
-      Staking: StakingLock
-  LogEntry: '{}'
-  MMRProof:
-    memberLeafIndex: u64
-    lastLeafIndex: u64
-    proof: Vec<H256>
-  MMRProofResult:
-    mmrSize: u64
-    proof: Text
-  MMRRoot: Hash
-  MappedRing: u128
-  MerkleMountainRangeRootLog:
-    prefix: '[u8; 4; Prefix]'
-    ParentMmrRoot: Hash
-  MessageId: (LaneId, MessageNonce)
-  MmrNodesPruningConfiguration:
-    step: NodeIndex
-    progress: NodeIndex
-    lastPosition: NodeIndex
-  MmrRootToSign:
-    mmrRoot: Hash
-    signatures: Vec<(AccountId, EcdsaSignature)>
-  NodeIndex: u64
-  OpCode: '[u8; 4; OpCode]'
-  Order:
-    lane: LaneId
-    message: MessageNonce
-    sentTime: BlockNumber
-    confirmTime: BlockNumber
-    lockedCollateral: Balance
-    assignedRelayers: Vec<PriorRelayer>
-  OtherAddress:
-    _enum:
-      Eth: EthereumAddress
-      Tron: TronAddress
-  OtherSignature:
-    _enum:
-      Eth: EcdsaSignature
-      Tron: EcdsaSignature
-  OutboundLaneData:
-    oldestUnprunedNonce: MessageNonce
-    latestGeneratedNonce: MessageNonce
-    latestReceivedNonce: MessageNonce
-  PalletId: LockIdentifier
-  Power: u32
-  PowerOf:
-    power: Power
-  PriorRelayer:
-    id: AccountId
-    fee: Balance
-    valid_range: BlockNumber
-  ProxyType:
-    _enum:
-      Any: 'Null'
-      NonTransfer: 'Null'
-      Governance: 'Null'
-      Staking: 'Null'
-      IdentityJudgement: 'Null'
-      EthereumBridge: 'Null'
-  RKT:
-    r: Balance
-    k: Balance
-  Reasons:
-    _enum:
-      - Fee
-      - Misc
-      - All
-  RedeemFor:
-    _enum:
-      Token: 'Null'
-      Deposit: 'Null'
-  Relayer:
-    id: AccountId
-    collateral: Balance
-    fee: Balance
-  RelayAffirmationId:
-    relayHeaderId: EthereumBlockNumber
-    round: u32
-    index: u32
-  RelayAffirmationT:
-    relayer: AccountId
-    relayHeaderParcels: EthereumRelayHeaderParcel
-    bond: Balance
-    maybeExtendedRelayAffirmationId: Option<RelayAffirmationId>
-    verified: bool
-  RelayAuthorityMessage: EcdsaMessage
-  RelayAuthoritySignature: EcdsaSignature
-  RelayAuthoritySigner: EcdsaAddress
-  RelayAuthorityT:
-    accountId: AccountId
-    signer: EthereumAddress
-    stake: Balance
-    term: BlockNumber
-  RelayHeaderId: EthereumBlockNumber
-  RelayHeaderParcel: EthereumRelayHeaderParcel
-  RelayProofs: EthereumRelayProofs
-  RelayVotingState:
-    ayes: Vec<AccountId>
-    nays: Vec<AccountId>
-  RingBalance: Balance
-  ScheduledAuthoritiesChangeT:
-    nextAuthorities: Vec<RelayAuthorityT>
-    deadline: BlockNumber
-  Signer: EthereumAddress
-  SpanRecord:
-    slashed: RKT
-    paidOut: RKT
-  SpecVersion: u32
-  StakingBalanceT:
-    _enum:
-      RingBalance: Balance
-      KtonBalance: Balance
-  StakingLedgerT:
-    stash: AccountId
-    activeRing: Compact<Balance>
-    activeDepositRing: Compact<Balance>
-    activeKton: Compact<Balance>
-    depositItems: Vec<TimeDepositItem>
-    ringStakingLock: StakingLock
-    ktonStakingLock: StakingLock
-    claimedRewards: Vec<EraIndex>
-  StakingLock:
-    stakingAmount: Balance
-    unbondings: Vec<Unbonding>
-  Status:
-    _enum:
-      Free: 'Null'
-      Reserved: 'Null'
-  Term: BlockNumber
-  TimeDepositItem:
-    value: Compact<Balance>
-    startTime: Compact<TsInMs>
-    expireTime: Compact<TsInMs>
-  TokenMessageId: '[u8; 16; TokenMessageId]'
-  TokenMetadata:
-    tokenType: u32
-    address: H160
-    name: Vec<u8>
-    symbol: Vec<u8>
-    decimal: u8
-  TransactionOutcome: '{}'
-  TreasuryProposal:
-    proposer: AccountId
-    beneficiary: AccountId
-    ringValue: Balance
-    ringBond: Balance
-    ktonValue: Balance
-    ktonBond: Balance
-  TronAddress: EthereumAddress
-  TsInMs: u64
-  UnappliedSlash:
-    validator: AccountId
-    own: RKT
-    others: Vec<(AccountId, RKT)>
-    reporters: Vec<AccountId>
-    payout: RKT
-  Unbonding:
-    amount: Balance
-    moment: BlockNumber
-  UsableBalance:
-    usableBalance: Balance
-  ValidatorPrefs: ValidatorPrefsWithBlocked
+ types:
+    Address: MultiAddress
+    AskPeriodNum: u64
+    AskPointNum: u32
+    AuthorityAres: AccountId
+    AccountParticipateEstimates:
+      account: AccountId
+      end: BlockNumber
+      estimates: Option<u64>
+      range_index: Option<u8>
+      eth_address: Option<Bytes>
+      multiplier: MultiplierOption
+      reward: u128
+    AresPriceData:
+      price: u64
+      account_id: AuthorityId
+      create_bn: BlockNumber
+      fraction_len: FractionLength
+      raw_number: JsonNumberValue
+      timestamp: u64
+    BalanceOf: Balance
+    ChooseWinnersPayload:
+      block_number: BlockNumber
+      winners: Vec<AccountParticipateEstimates>
+      public: AccountId
+      estimates_config: Bytes
+      symbol: Bytes
+      price: '(u64, FractionLength)'
+    EstimatesState:
+      _enum:
+        - InActive
+        - Active
+        - WaitingPayout
+        - Completed
+    EstimatesType:
+      _enum:
+        - DEVIATION
+        - RANGE
+    FractionLength: u32
+    HttpError:
+      _enum:
+        IoErr: Bytes
+        TimeOut: Bytes
+        StatusErr: '(Bytes,u16)'
+        ParseErr: Bytes
+    HttpErrTracePayload:
+      trace_data: 'HttpErrTraceData<BlockNumber, AuthorityId>'
+      auth: AuthorityId
+      public: MultiSigner
+    HttpErrTraceData:
+      block_number: BlockNumber
+      err_auth: AuthorityId
+      err_status: HttpError
+      tip: Bytes
+    JsonNumberValue:
+      integer: u64
+      fraction: u64
+      fraction_length: u32
+      exponent: u32
+    Keys: SessionKeys3
+    LookupSource: MultiAddress
+    MultiplierOption:
+      _enum:
+        - Base1
+        - Base2
+        - Base5
+    OcwControlData:
+      need_verifier_check: bool
+      open_free_price_reporter: bool
+      open_paid_price_reporter: bool
+    OffchainSignature: MultiSignature
+    PaidValue:
+      create_bn: BlockNumber
+      amount: BalanceOf
+      is_income: bool
+    PurchasedId: Bytes
+    PriceKey: Bytes
+    PreCheckPayload:
+      block_number: BlockNumber
+      pre_check_stash: AccountId
+      pre_check_auth: AuthorityId
+      auth: AuthorityId
+      public: MultiSigner
+    PreCheckResultPayload:
+      block_number: BlockNumber
+      pre_check_list: Vec<PreCheckStruct>
+      pre_check_stash: AccountId
+      pre_check_auth: AuthorityId
+      public: MultiSigner
+    PreCheckCompareLog:
+      chain_avg_price_list: 'BTreeMap<Bytes, (u64, FractionLength)>'
+      validator_up_price_list: 'BTreeMap<Bytes, (u64, FractionLength)>'
+      raw_precheck_list: Vec<PreCheckStruct>
+    PreCheckStruct:
+      price_key: Vec<u8>
+      number_val: JsonNumberValue
+      max_offset: Percent
+      timestamp: u64
+    PricePayloadSubPrice: '(PriceKey, u64, FractionLength, JsonNumberValue, u64)'
+    PricePayloadSubJumpBlock: '(PriceKey, RequestInterval)'
+    PricePayload:
+      block_number: BlockNumber
+      price: Vec<PricePayloadSubPrice>
+      jump_block: Vec<PricePayloadSubJumpBlock>
+      auth: AuthorityId
+      public: MultiSigner
+    PreCheckStatus:
+      _enum:
+        - Review
+        - Prohibit
+        - Pass
+    PurchasedRequestData:
+      account_id: AccountId
+      offer: BalanceOf
+      create_bn: BlockNumber
+      submit_threshold: u8
+      max_duration: u64
+      request_keys: Vec<Vec<u8>>
+    PurchasedPricePayload:
+      block_number: BlockNumber
+      purchase_id: Vec<u8>
+      price: Vec<PricePayloadSubPrice>
+      auth: AuthorityId
+      public: MultiSigner
+    PurchasedAvgPriceData:
+      create_bn: u64
+      reached_type: u8
+      price_data: '(u64, FractionLength)'
+    PurchasedDefaultData:
+      submit_threshold: u8
+      max_duration: u64
+      avg_keep_duration: u64
+      unit_price: u64
+    PurchasedForceCleanPayload:
+      BlockNumber: BlockNumber
+      purchase_id_list: Vec<Vec<u8>>
+      auth: AuthorityId
+      public: MultiSigner
+    PurchaseId: Vec<u8>
+    RequestInterval: u8
+    StatusErr: (u16)
+    SymbolEstimatesConfig:
+      symbol: Bytes
+      estimates_type: EstimatesType
+      id: u64
+      ticket_price: Balance
+      symbol_completed_price: u64
+      symbol_fraction: FractionLength
+      start: BlockNumber
+      end: BlockNumber
+      distribute: BlockNumber
+      deviation: Option<Permill>
+      range: Option<Vec<u64>>
+      total_reward: Balance
+      state: EstimatesState
