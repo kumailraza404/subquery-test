@@ -1,22 +1,30 @@
 types:
-  ResourceId: '[u8; 32]'
-  DepositNonce: u64
-  ProposalStatus:
-    _enum:
-      - Initiated
-      - Approved
-      - Rejected
-  ProposalVotes:
-    votes_for: Vec<AccountId>
-    votes_against: Vec<AccountId>
-    status: ProposalStatus
-  BridgeTokenId: U256
-  BridgeChainId: u8
-  VestingPlan:
-  start_time: u64
-  cliff_duration: u64
-  total_duration: u64
-  interval: u64
-  initial_amount: Balance
-  total_amount: Balance
-  vesting_during_cliff: bool
+  Contribution:
+    account_id: AccountId
+    value: Balance
+  Grant:
+    contributions: Vec<Contribution>
+    is_approved: bool
+    is_canceled: bool
+    is_withdrawn: bool
+    matching_fund: Balance
+    project_index: ProjectIndex
+    withdrawal_expiration: BlockNumber
+  Project:
+    create_block_number: BlockNumber
+    description: Vec<u8>
+    logo: Vec<u8>
+    name: Vec<u8>
+    owner: AccountId
+    website: Vec<u8>
+  ProjectIndex: u32
+  ProjectOf: Project
+  Round:
+    end: BlockNumber
+    grants: Vec<Grant>
+    is_canceled: bool
+    is_finalized: bool
+    matching_fund: Balance
+    start: BlockNumber
+  RoundIndex: u32
+  RoundOf: Round

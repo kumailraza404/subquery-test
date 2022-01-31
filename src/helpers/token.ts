@@ -29,5 +29,9 @@ export const tokens = {
     CONTEXT_FREE: {
         name: "CTX",
         decimals: 18
+    },
+    NEUMAN: {
+        name: "NEU",
+        decimals: 10
     }
 }
