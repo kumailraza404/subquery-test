@@ -33,5 +33,9 @@ export const tokens = {
     NEUMAN: {
         name: "NEU",
         decimals: 10
+    },
+    PANGOLIN: {
+        name: "PRING",
+        decimals: 9
     }
 }

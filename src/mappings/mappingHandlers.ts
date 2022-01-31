@@ -15,7 +15,7 @@ async function ensureAccounts(accountIds: string[]): Promise<void> {
 
 
 export async function handleTransfer(event: SubstrateEvent): Promise<void> {
-    const { KUSAMA: {
+    const { PANGOLIN: {
         name, decimals
     } } = tokens
     const {

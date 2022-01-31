@@ -6,10 +6,10 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
-  endpoint: wss://kusama.api.onfinality.io/public-ws
-  dictionary: https://api.subquery.network/sq/subquery/kusama-dictionary
-
+  genesisHash: '0xce44bd16fc276f9e457b452577b6c2678e57768260012af127479fed806da7e7'
+  endpoint: wss://pangolin-rpc.darwinia.network
+  chaintypes:
+    file: ./types.yaml
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1
