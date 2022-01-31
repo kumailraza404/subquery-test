@@ -21,5 +21,9 @@ export const tokens = {
     KUSAMA: {
         name: "KSM",
         decimals: 12,
+    },
+    AMBER: {
+        name: "ACFG",
+        decimals: 18
     }
 }
