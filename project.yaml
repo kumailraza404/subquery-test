@@ -6,10 +6,11 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
-  endpoint: wss://kusama.api.onfinality.io/public-ws
-  dictionary: https://api.subquery.network/sq/subquery/kusama-dictionary
-
+  genesisHash: "0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b"
+  endpoint: wss://karura.api.onfinality.io/public-ws
+  dictionary: https://api.subquery.network/sq/subquery/karura-dictionary
+  chaintypes:
+    file: ./types.ts
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1

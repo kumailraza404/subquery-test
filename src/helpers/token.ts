@@ -33,5 +33,9 @@ export const tokens = {
     NEUMAN: {
         name: "NEU",
         decimals: 10
+    },
+    KARURA: {
+        name: "KAR",
+        decimals: 12
     }
 }
