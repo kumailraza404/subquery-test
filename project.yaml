@@ -6,11 +6,11 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: "0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b"
-  endpoint: wss://karura.api.onfinality.io/public-ws
-  dictionary: https://api.subquery.network/sq/subquery/karura-dictionary
+  genesisHash: "0xf1cf9022c7ebb34b162d5b5e34e705a5a740b2d0ecc1009fb89023e62a488108"
+  endpoint: wss://shiden.api.onfinality.io/public-ws
+  dictionary: https://api.subquery.network/sq/subquery/shiden-dictionary
   chaintypes:
-    file: ./types.ts
+    file: ./types.yaml
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1

@@ -37,5 +37,9 @@ export const tokens = {
     KARURA: {
         name: "KAR",
         decimals: 12
+    },
+    SHIDEN: {
+        name: "SDN",
+        decimals: 18
     }
 }
