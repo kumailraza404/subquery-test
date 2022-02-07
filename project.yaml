@@ -15,7 +15,7 @@ dataSources:
   - kind: substrate/Runtime
     startBlock: 1
     mapping:
-      file: ./dist/index.js
+      file: ./types.yaml
       handlers:
         - handler: handleTransfer
           kind: substrate/EventHandler
