@@ -41,5 +41,9 @@ export const tokens = {
     SHIDEN: {
         name: "SDN",
         decimals: 18
+    },
+    KHALA: {
+        name: "PHA",
+        decimals: 12
     }
 }
