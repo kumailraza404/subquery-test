@@ -6,11 +6,11 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: "0xd43540ba6d3eb4897c28a77d48cb5b729fea37603cbbfc7a86a73b72adb3be8d"
-  endpoint: wss://khala.api.onfinality.io/public-ws
-  dictionary: https://api.subquery.network/sq/subquery/khala-dictionary
+  genesisHash: '0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527'
+  endpoint: wss://moonbeam-alpha.api.onfinality.io/public-ws
+  dictionary: https://api.subquery.network/sq/subquery/moonbeam-dictionary
   chaintypes:
-    file: ./types.js
+    file: "./dist/chaintypes.js"
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1
@@ -23,4 +23,3 @@ dataSources:
             module: balances
             method: Transfer
 
-# giving error at block 1,412,702 so going to index from next block e.g 1,412,703

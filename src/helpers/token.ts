@@ -45,5 +45,9 @@ export const tokens = {
     KHALA: {
         name: "PHA",
         decimals: 12
+    },
+    MOONBEAM: {
+        name: "GLMR",
+        decimals: 18
     }
 }
