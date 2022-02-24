@@ -49,5 +49,9 @@ export const tokens = {
     MOONBEAM: {
         name: "GLMR",
         decimals: 18
+    },
+    ASTAR: {
+        name: "ASTR",
+        decimals: 18
     }
 }
