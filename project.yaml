@@ -10,7 +10,7 @@ network:
   endpoint: wss://astar.api.onfinality.io/public-ws
   dictionary: https://api.subquery.network/sq/subquery/astar-dictionary
   chaintypes:
-    file: "./types.yaml"
+    file: ./types.yaml
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1
