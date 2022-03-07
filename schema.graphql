@@ -1,3 +1,8 @@
+enum Type {
+  Transfer,
+  MultiSig
+}
+
 type Account @entity {
   id: ID!
   transferFrom: [Transfer!]! @derivedFrom(field: "from")
@@ -7,6 +12,7 @@ type Account @entity {
 type Transfer @entity {
   id: ID!
   amount: BigInt!
+  fees: BigInt!
   extrinsicHash: String
   status: Boolean!
   to: Account!
@@ -14,4 +20,8 @@ type Transfer @entity {
   token: String!
   decimals: BigInt!
   timestamp: Date!
+}
+
+type MultiSig @entity {
+  id: ID!
 }
