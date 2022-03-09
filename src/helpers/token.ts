@@ -53,5 +53,9 @@ export const tokens = {
     ASTAR: {
         name: "ASTR",
         decimals: 18
+    },
+    ACALA: {
+        name: "ACA",
+        decimals: 12
     }
 }
