@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -b",
     "prepack": "rm -rf dist && npm build",
-    "test": "jest",
+    "start:docker": "docker-compose pull && docker-compose up",
     "codegen": "./node_modules/.bin/subql codegen"
   },
   "homepage": "https://github.com/subquery/subql-starter",
@@ -19,10 +19,9 @@
   "author": "khuzama98",
   "license": "MIT",
   "devDependencies": {
-    "@polkadot/api": "^7",
+    "@polkadot/api": "^6",
     "@subql/cli": "latest",
     "@subql/types": "latest",
-    "typescript": "4.3.2",
-    "@acala-network/type-definitions": "latest"
+    "typescript": "4.3.2"
   }
 }
