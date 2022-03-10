@@ -13,5 +13,5 @@ type Transfer @entity {
   from: Account!
   token: String!
   decimals: BigInt!
-  timestamp: Date!
+  timestamp: Date
 }
