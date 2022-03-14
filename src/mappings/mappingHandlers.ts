@@ -1,4 +1,4 @@
-import { SubstrateEvent } from "@subql/types";
+import { SubstrateEvent, SubstrateExtrinsic } from "@subql/types";
 import { Transfer } from "../types";
 import { Balance } from "@polkadot/types/interfaces";
 import { Account } from '../types/models/Account';
