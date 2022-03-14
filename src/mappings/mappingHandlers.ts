@@ -1,4 +1,4 @@
-import { SubstrateEvent } from "@subql/types";
+import { SubstrateEvent, SubstrateExtrinsic } from "@subql/types";
 import { Transfer } from "../types";
 import { Balance } from "@polkadot/types/interfaces";
 import { Account } from '../types/models/Account';
@@ -13,6 +13,27 @@ async function ensureAccounts(accountIds: string[]): Promise<void> {
     }
 }
 
+
+function calculateFees(extrinsic: SubstrateExtrinsic): bigint {
+    const eventRecord = extrinsic.events.find((event) => {
+        return event.event.method == "Withdraw" && event.event.section == "balances"
+    })
+
+    if (eventRecord) {
+        const {
+            event: {
+                data: [accountid, fee]
+            }
+        } = eventRecord
+
+        const extrinsicSigner = extrinsic.extrinsic.signer.toString()
+        const withdrawAccountId = accountid.toString()
+
+        return extrinsicSigner === withdrawAccountId ? (fee as Balance).toBigInt() : BigInt(0)
+    }
+
+    return BigInt(0)
+}
 
 export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     const { CONTEXT_FREE: {
@@ -39,6 +60,7 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     transferInfo.timestamp = timestamp;
     transferInfo.extrinsicHash = extrinsicHash;
     transferInfo.amount = transformedAmount;
+    transferInfo.fees = event.extrinsic ? calculateFees(event.extrinsic) : BigInt(0)
     transferInfo.status = isSuccess;
     transferInfo.decimals = expendedDecimals;
 
