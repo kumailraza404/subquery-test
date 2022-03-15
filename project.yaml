@@ -22,4 +22,5 @@ dataSources:
           filter:
             module: balances
             method: Transfer
-
+        - handler: handleFailedTransfers
+          kind: substrate/CallHandler
