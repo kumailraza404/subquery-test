@@ -1,5 +1,5 @@
 specVersion: 0.2.0
-name: subql-shibuya
+name: subql-contextfree
 version: 1.0.0
 description: ''
 repository: ''
@@ -22,5 +22,5 @@ dataSources:
           filter:
             module: balances
             method: Transfer
-
-# giving error at block 1,412,702 so going to index from next block e.g 1,412,703
+        - handler: handleFailedTransfers
+          kind: substrate/CallHandler
