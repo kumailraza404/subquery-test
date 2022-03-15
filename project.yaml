@@ -1,5 +1,5 @@
 specVersion: 0.2.0
-name: subql-astar
+name: subql-acala
 version: 1.0.0
 description: ''
 repository: ''
@@ -22,4 +22,5 @@ dataSources:
           filter:
             module: balances
             method: Transfer
-
+        - handler: handleFailedTransfers
+          kind: substrate/CallHandler
