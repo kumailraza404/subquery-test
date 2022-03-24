@@ -48,13 +48,13 @@ function calculateFees(extrinsic: SubstrateExtrinsic): bigint {
         return event.event.method == "Deposit" && event.event.section == "treasury"
     })
 
-    if(eventRecordDeposit) {
-        const {event: {data: [, fee]}}= eventRecordDeposit
+    if (eventRecordDeposit) {
+        const { event: { data: [, fee] } } = eventRecordDeposit
 
         depositFees = (fee as Balance).toBigInt()
     }
-    if(eventRecordTreasury) {
-        const {event: {data: [fee]}}= eventRecordTreasury
+    if (eventRecordTreasury) {
+        const { event: { data: [fee] } } = eventRecordTreasury
 
         treasuryFees = (fee as Balance).toBigInt()
     }
@@ -74,7 +74,7 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     const blockNo = event.block.block.header.number.toNumber();
     const expendedDecimals = BigInt("1" + "0".repeat(decimals))
     const transformedAmount = (amount as Balance).toBigInt();
-    const extrinsicHash = event.extrinsic?.extrinsic.hash.toString();
+    const extrinsicHash = event.extrinsic ? event.extrinsic.block.timestamp : new Date();
     const timestamp = event.block.timestamp;
     const transferInfo = new Transfer(`${blockNo}-${event.idx}`);
     const isSuccess = event.extrinsic ? event.extrinsic.success : true;
@@ -96,15 +96,15 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
 export async function handleFailedTransfers(extrinsic: SubstrateExtrinsic): Promise<void> {
     const { isSigned } = extrinsic.extrinsic;
 
-    if(isSigned){
-        if(extrinsic.success){
+    if (isSigned) {
+        if (extrinsic.success) {
             return null
         }
 
         const method = extrinsic.extrinsic.method;
         const events = ["transfer", "transferKeepAlive"]
 
-        if(method.section == "balances" && events.includes(method.method)){
+        if (method.section == "balances" && events.includes(method.method)) {
             const [to, amount] = method.args;
             const from = extrinsic.extrinsic.signer;
             const expendedDecimals = BigInt("1" + "0".repeat(decimals))
@@ -124,7 +124,7 @@ export async function handleFailedTransfers(extrinsic: SubstrateExtrinsic): Prom
             transferInfo.amount = transformedAmount;
             transferInfo.fees = calculateFees(extrinsic)
             transferInfo.status = false;
-            transferInfo.decimals = expendedDecimals;            
+            transferInfo.decimals = expendedDecimals;
 
             await transferInfo.save();
 
