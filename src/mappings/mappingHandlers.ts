@@ -74,8 +74,8 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     const blockNo = event.block.block.header.number.toNumber();
     const expendedDecimals = BigInt("1" + "0".repeat(decimals))
     const transformedAmount = (amount as Balance).toBigInt();
-    const extrinsicHash = event.extrinsic ? event.extrinsic.block.timestamp : new Date();
-    const timestamp = event.block.timestamp;
+    const extrinsicHash = event.extrinsic?.extrinsic.hash.toString();
+    const timestamp = event.extrinsic ? event.extrinsic.block.timestamp : new Date();
     const transferInfo = new Transfer(`${blockNo}-${event.idx}`);
     const isSuccess = event.extrinsic ? event.extrinsic.success : true;
 
@@ -89,6 +89,7 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     transferInfo.amount = transformedAmount;
     transferInfo.status = isSuccess;
     transferInfo.decimals = expendedDecimals;
+    transferInfo.fees = event.extrinsic ? calculateFees(event.extrinsic) : BigInt(0)
 
     await transferInfo.save();
 }
