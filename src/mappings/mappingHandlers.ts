@@ -89,6 +89,7 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     transferInfo.amount = transformedAmount;
     transferInfo.status = isSuccess;
     transferInfo.decimals = expendedDecimals;
+    transferInfo.fees = event.extrinsic ? calculateFees(event.extrinsic) : BigInt(0)
 
     await transferInfo.save();
 }
