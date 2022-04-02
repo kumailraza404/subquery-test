@@ -37,5 +37,9 @@ export const tokens = {
     KARURA: {
         name: "KAR",
         decimals: 12
+    },
+    AUTOMATA: {
+        name: "ATA",
+        decimals: 18
     }
 }

@@ -4,7 +4,7 @@ import { Balance } from "@polkadot/types/interfaces";
 import { Account } from '../types/models/Account';
 import { tokens } from '../helpers/token'
 
-const { KARURA: {
+const { AUTOMATA: {
     name, decimals
 } } = tokens
 
