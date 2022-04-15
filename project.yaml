@@ -13,7 +13,7 @@ network:
     file: ./types.json
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 1241230
+    startBlock: 1
     mapping:
       file: ./dist/index.js
       handlers:
@@ -27,5 +27,6 @@ dataSources:
           filter:
             module: currencies
             method: Transferred
-
+        - handler: handleFailedTransfers
+          kind: substrate/CallHandler
 # giving error at block 1,412,702 so going to index from next block e.g 1,412,703
