@@ -84,9 +84,9 @@ function calculateFees(extrinsic: SubstrateExtrinsic): bigint {
 export async function handleTransferCurrency(event: SubstrateEvent): Promise<void> {
     const [currencyId, from, to, amount] = getDataFromEvent(event)
     const currency = JSON.parse(JSON.stringify(currencyId))
-    if(currency.token){
+    if (currency.token) {
         await ensureAccounts([from.toString(), to.toString()]);
-        
+
         const transferInfo = processDataSuccess({ currencyId: currency, event, amount, from, to })
         await transferInfo.save();
     }
@@ -97,7 +97,7 @@ export async function handleTransfer(event: SubstrateEvent): Promise<void> {
     const [from, to, amount] = getDataFromEvent(event)
 
     await ensureAccounts([from.toString(), to.toString()]);
-    
+
     const transferInfo = processDataSuccess({ currencyId: undefined, event, amount, from, to })
     await transferInfo.save();
 
@@ -114,7 +114,7 @@ export async function handleFailedTransfers(extrinsic: SubstrateExtrinsic): Prom
         const method = extrinsic.extrinsic.method;
         const events = ["transfer", "transferKeepAlive"]
 
-    
+
 
         if (method.section == "balances" && events.includes(method.method)) {
             const [to, amount] = method.args;
@@ -124,9 +124,9 @@ export async function handleFailedTransfers(extrinsic: SubstrateExtrinsic): Prom
             const transferInfo = processDataFail({ currencyId: undefined, extrinsic, amount, from, to })
             await transferInfo.save();
         }
-        else if(method.section == "currencies" && events.includes(method.method)){
-            const [ dest, currencyId, amount] = method.args;
-            const {id : to} = JSON.parse(JSON.stringify(dest));
+        else if (method.section == "currencies" && events.includes(method.method)) {
+            const [dest, currencyId, amount] = method.args;
+            const { id: to } = JSON.parse(JSON.stringify(dest));
             const from = extrinsic.extrinsic.signer;
             await ensureAccounts([from.toString(), to.toString()]);
 
@@ -138,7 +138,7 @@ export async function handleFailedTransfers(extrinsic: SubstrateExtrinsic): Prom
 
 
 function processDataSuccess({ currencyId, event, amount, from, to }: MetadataEvent) {
-    const { KARURA: {
+    const { ACALA: {
         name, decimals
     } } = tokens
     const currency = currencyId ? currencyId.token : name
@@ -163,7 +163,7 @@ function processDataSuccess({ currencyId, event, amount, from, to }: MetadataEve
 }
 
 function processDataFail({ currencyId, extrinsic, amount, from, to }: MetadataExtrinsic) {
-    const { KARURA: {
+    const { ACALA: {
         name, decimals
     } } = tokens
     const currency = currencyId ? currencyId.token : name
